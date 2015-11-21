@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "SqueakBack"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "Interactive feedback for your app"
   s.homepage     = "https://squeakback.com/"
   s.license      = {
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.source_files = 'SqueakBack.framework/Headers/*.{h}'
   s.ios.vendored_frameworks = 'SqueakBack.framework'
   s.preserve_paths = 'SqueakBack.framework/*'
-  s.frameworks   = 'QuartzCore', 'CoreGraphics', 'CoreMotion', 'SystemConfiguration', 'Foundation', 'AudioToolbox', 'CoreTelephony', 'UIKit', 'SqueakBack'
+  s.frameworks   = 'QuartzCore', 'CoreGraphics', 'CoreMotion', 'SystemConfiguration', 'Foundation', 'AudioToolbox', 'UIKit', 'SqueakBack'
   s.libraries    = 'c++'
   s.xcconfig     =  { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/SqueakBack/"', 'CLANG_CXX_LANGUAGE_STANDARD' => 'c++11', 'CLANG_CXX_LIBRARY' => 'libc++' }
   s.requires_arc = true

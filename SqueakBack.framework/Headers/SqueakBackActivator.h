@@ -25,33 +25,15 @@ extern NSString * __nonnull const SQBSqueakBackComposerStartedNotification;
 extern NSString * __nonnull const SQBSqueakBackComposerFinishedNotification;
 
 /**
- *  A block that creates a gesture used to activate SqueakBack.  Because the block takes
- *  a viewController as input, you can selectively disable SqueakBack activation 
- *  by returning nil.  You do not need to specify the target/selector of the 
- *  gesture recognizer you return.
- *
- *  The default activation block:
- *
- *  [Objective-C]
- *
- *  [SqueakBack instance].createActivationGestureBlock = ^(UIViewController* viewController) {
- *        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] init];
- *       tap.numberOfTapsRequired = 3;
- *       tap.numberOfTouchesRequired = 2;
- *      return tap;
- *    };
- *
- *  [Swift]
- *
- *  SqueakBack.instance().createActivationGestureBlock = { viewController in
- *       let tap = UITapGestureRecognizer()
- *       tap.numberOfTapsRequired = 3
- *       tap.numberOfTouchesRequired = 2
- *       return tap
- *   }
+ * A block for customizing the activation gesture. See dicussion below.
  */
 typedef  UIGestureRecognizer* __nullable (^SQBCreateActivationGestureBlock)(UIViewController* __nonnull viewController);
 
+/**
+ *  SqueakBack is the main class that you use to configure the SDK.  You must
+ *  call the static method startWithAPIKey with the key that you registered 
+ *  for your App at SqueakBack.com.
+ */
 @interface SqueakBack : NSObject
 
 /**
@@ -78,12 +60,38 @@ typedef  UIGestureRecognizer* __nullable (^SQBCreateActivationGestureBlock)(UIVi
 @property (nonatomic, copy, readonly) NSString* __nullable APIKey;
 
 /**
- *  A block used to create a gesture to activate SqueakBack.  See above discussion.
+ *  A block used to create a gesture to activate SqueakBack.
+ *  A block that creates a gesture used to activate SqueakBack.  Because the block takes
+ *  a viewController as input, you can selectively disable SqueakBack activation
+ *  by returning nil.  You do not need to specify the target/selector of the
+ *  gesture recognizer you return.
+ *
+ *  The default activation block:
+ *
+ *  [Objective-C]
+ *  ```
+ *  [SqueakBack instance].createActivationGestureBlock = ^(UIViewController* viewController) {
+ *        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] init];
+ *       tap.numberOfTapsRequired = 3;
+ *       tap.numberOfTouchesRequired = 2;
+ *      return tap;
+ *    };
+ *  ```
+ *
+ *  [Swift]
+ *  ```
+ *  SqueakBack.instance().createActivationGestureBlock = { viewController in
+ *       let tap = UITapGestureRecognizer()
+ *       tap.numberOfTapsRequired = 3
+ *       tap.numberOfTouchesRequired = 2
+ *       return tap
+ *   }
+ *  ```
  */
 @property (nonatomic, copy, nullable) SQBCreateActivationGestureBlock createActivationGestureBlock;
 
 /**
- *  When set SqueakBack YES will only initiate uploads iff WIFI is available.  
+ *  When set SqueakBack YES will only initiate uploads if and only if WIFI is available.
  */
 @property (nonatomic) BOOL uploadOnWIFIOnly;
 
