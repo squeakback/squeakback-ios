@@ -1,6 +1,0 @@
-framework module SqueakBack {
-  umbrella header "SqueakBack.h"
-
-  export *
-  module * { export * }
-}
