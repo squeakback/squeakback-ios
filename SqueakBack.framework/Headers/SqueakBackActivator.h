@@ -50,6 +50,11 @@ typedef  UIGestureRecognizer* __nullable (^SQBCreateActivationGestureBlock)(UIVi
 + (SqueakBack* __nonnull) instance;
 
 /**
+ * Manually trigger a SqueakBack with the active view controller.
+ */
+- (void)activate;
+
+/**
  *  Manually trigger a SqueakBack from a given view controller.
  */
 - (void)activateFromViewController:(nonnull UIViewController*) viewController;
@@ -58,6 +63,24 @@ typedef  UIGestureRecognizer* __nullable (^SQBCreateActivationGestureBlock)(UIVi
  *  The APIKey supplied at startup. Returns nil before started.
  */
 @property (nonatomic, copy, readonly) NSString* __nullable APIKey;
+
+
+/**
+ *  Activate SqueakBack when the device is shaken, not stirred.  Default is off.
+ */
+@property (nonatomic) BOOL enableShakeActivation;
+
+/**
+ *  Active SqueakBack if a screenshot is detected.  Default is off. This does not
+ *  (and cannot) prevent a screenshot going to the users camera roll.
+ */
+@property (nonatomic) BOOL enableScreenshotActivation;
+
+/**
+ *  Enable gesture based activations.  Default is on.  Gesture customization can
+ *  be customized with your own gesture by setting createActivationGestureBlock.
+ */
+@property (nonatomic) BOOL enableGestureActivation;
 
 /**
  *  A block used to create a gesture to activate SqueakBack.
@@ -69,24 +92,24 @@ typedef  UIGestureRecognizer* __nullable (^SQBCreateActivationGestureBlock)(UIVi
  *  The default activation block:
  *
  *  [Objective-C]
- *  ```
+ *  `
  *  [SqueakBack instance].createActivationGestureBlock = ^(UIViewController* viewController) {
  *        UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] init];
  *       tap.numberOfTapsRequired = 3;
  *       tap.numberOfTouchesRequired = 2;
  *      return tap;
  *    };
- *  ```
+ *  `
  *
  *  [Swift]
- *  ```
+ *  `
  *  SqueakBack.instance().createActivationGestureBlock = { viewController in
  *       let tap = UITapGestureRecognizer()
  *       tap.numberOfTapsRequired = 3
  *       tap.numberOfTouchesRequired = 2
  *       return tap
  *   }
- *  ```
+ *  `
  */
 @property (nonatomic, copy, nullable) SQBCreateActivationGestureBlock createActivationGestureBlock;
 

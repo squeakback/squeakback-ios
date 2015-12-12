@@ -16,5 +16,4 @@ FOUNDATION_EXPORT const unsigned char SqueakBackVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SqueakBack/PublicHeader.h>
 #import <SqueakBack/SqueakBackActivator.h>
-#import <SqueakBack/SQBShakeGestureRecognizer.h>
 
