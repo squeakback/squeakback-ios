@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "SQBAppearance.h"
 
 /**
  * SQBSqueakBackComposerStartedNotification is posted when SqueakBack is activated.
@@ -139,6 +140,12 @@ typedef  UIGestureRecognizer* __nullable (^SQBCreateActivationGestureBlock)(UIVi
 /**
  *  Log a message to the event system.
  */
-+ (void) logEvent:(nonnull NSString*)message;
++ (void) logEvent:(nonnull NSString*)format, ... NS_FORMAT_FUNCTION(1, 2);
+
+
+/**
+ *  Control for the appearance of SqueakBack.  Set to nil for default appearance.
+ */
+@property (nonatomic, strong, nullable) SQBAppearance* appearance;
 
 @end
